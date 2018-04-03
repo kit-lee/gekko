@@ -52,7 +52,7 @@
             template(v-if='!gekko.report') 0
             template(v-if='gekko.report') {{ round(gekko.report.profit) }} {{ gekko.watch.currency }}
     .hr
-    h2 Start a new live Gekko
+    h2 Start a new live Bitbot
     router-link.btn--primary(to='/live-gekkos/new') Start a new live Gekko!
 </template>
 
@@ -64,7 +64,7 @@ import marked from '../../tools/marked'
 
 const text = marked(`
 
-## Live Gekko
+## Live Bitbot
 
 Run your strategy against the live market!
 

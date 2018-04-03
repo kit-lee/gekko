@@ -10,7 +10,7 @@ export const bus = new Vue();
 
 bus.$on('gekko_update', data => console.log(data))
 bus.$on('gekko_error', data => {
-  alert('GEKKO ERROR: ' + data.error);
+  alert('Bitbot ERROR: ' + data.error);
 })
 
 bus.$on('import_update', data => console.log(data))

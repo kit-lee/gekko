@@ -2,8 +2,8 @@
   footer.p2.bg--off-white
     .contain
       p
-        em Use Gekko at your own risk.
-      p Using Gekko v{{ version.gekko }} and Gekko UI v{{ version.ui }}.
+        em Contact us with email: im@muses.cc
+      p 
 </template>
 
 <script>

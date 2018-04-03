@@ -14,8 +14,8 @@ const messages = {
 
 ## Disconnected
 
-Something happened to either Gekko or the connection.
-Please check the terminal where Gekko is running or
+Something happened to either Bitbot or the connection.
+Please check the terminal where Bitbot is running or
 your network connection.
 
   `)
