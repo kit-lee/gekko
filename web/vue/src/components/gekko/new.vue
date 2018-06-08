@@ -1,6 +1,6 @@
 <template lang='jade'>
   div.contain.my2
-    h3 Start a new gekko
+    h3 Start a new BitBot
     gekko-config-builder(v-on:config='updateConfig')
     .hr
     .txt--center(v-if='config.valid')
@@ -104,7 +104,7 @@ export default {
 
         this.startGekko((err, resp) => {
           this.$router.push({
-            path: `/live-gekkos/stratrunner/${resp.id}`
+            path: `/live/stratrunner/${resp.id}`
           });
         });
       }
@@ -142,12 +142,12 @@ export default {
         if(this.existingMarketWatcher) {
           alert('This market is already being watched, redirecting you now...');
           this.$router.push({
-            path: `/live-gekkos/watcher/${this.existingMarketWatcher.id}`
+            path: `/live/watcher/${this.existingMarketWatcher.id}`
           });
         } else {
           this.startWatcher((error, resp) => {
             this.$router.push({
-              path: `/live-gekkos/watcher/${resp.id}`
+              path: `/live/watcher/${resp.id}`
             });
           });
         }
@@ -158,7 +158,7 @@ export default {
           // the specified market is already being watched,
           // just start a gekko!
           this.startGekko(this.routeToGekko);
-          
+
         } else {
           // the specified market is not yet being watched,
           // we need to create a watcher
@@ -175,7 +175,7 @@ export default {
         return console.error(err, resp.error);
 
       this.$router.push({
-        path: `/live-gekkos/stratrunner/${resp.id}`
+        path: `/live/stratrunner/${resp.id}`
       });
     },
     startWatcher: function(next) {

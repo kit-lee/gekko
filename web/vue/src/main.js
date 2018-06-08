@@ -31,10 +31,10 @@ const router = new VueRouter({
     { path: '/data', component: data },
     { path: '/data/importer', component: importer },
     { path: '/data/importer/import/:id', component: singleImport },
-    { path: '/live-gekkos', component: gekkoList },
-    { path: '/live-gekkos/new', component: newGekko },
-    { path: '/live-gekkos/stratrunner/:id', component: singleStratrunner },
-    { path: '/live-gekkos/watcher/:id', component: singleWatcher }
+    { path: '/live', component: gekkoList },
+    { path: '/live/new', component: newGekko },
+    { path: '/live/stratrunner/:id', component: singleStratrunner },
+    { path: '/live/watcher/:id', component: singleWatcher }
   ]
 });
 

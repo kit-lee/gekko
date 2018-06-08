@@ -2,7 +2,7 @@
   div.my2
     .contain(v-if='!data')
       h1 Unknown Watcher
-      p Gekko doesn't know what whatcher this is...
+      p BitBot doesn't know what whatcher this is...
     div(v-if='data')
       h2.contain Market Watcher
       .grd.contain

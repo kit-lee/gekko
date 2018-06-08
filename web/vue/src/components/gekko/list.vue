@@ -15,7 +15,7 @@
           th last update
           th duration
       tbody
-        tr.clickable(v-for='gekko in watchers', v-on:click='$router.push({path: `live-gekkos/watcher/${gekko.id}`})')
+        tr.clickable(v-for='gekko in watchers', v-on:click='$router.push({path: `live/watcher/${gekko.id}`})')
           td {{ gekko.watch.exchange }}
           td {{ gekko.watch.currency }}
           td {{ gekko.watch.asset }}
@@ -41,7 +41,7 @@
           th type
           th trades
       tbody
-        tr.clickable(v-for='gekko in stratrunners', v-on:click='$router.push({path: `live-gekkos/stratrunner/${gekko.id}`})')
+        tr.clickable(v-for='gekko in stratrunners', v-on:click='$router.push({path: `live/stratrunner/${gekko.id}`})')
           td {{ gekko.watch.exchange }}
           td {{ gekko.watch.currency }}
           td {{ gekko.watch.asset }}
@@ -58,8 +58,8 @@
           td
             template(v-if='gekko.trades') {{ gekko.trades.length }}
     .hr
-    h2 Start a new live Gekko
-    router-link.btn--primary(to='/live-gekkos/new') Start a new live Gekko!
+    h2 Start a new live BitBot
+    router-link.btn--primary(to='/live/new') Start a new live BitBot!
 </template>
 
 <script>
@@ -70,7 +70,7 @@ import marked from '../../tools/marked'
 
 const text = marked(`
 
-## Live Gekko
+## Live BitBot
 
 Run your strategy against the live market!
 

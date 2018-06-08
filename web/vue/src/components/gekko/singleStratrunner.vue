@@ -2,7 +2,7 @@
   div.my2
     .contain(v-if='!data')
       h1 Unknown Strat runner
-      p Gekko doesn't know what strat runner this is...
+      p BitBot doesn't know what strat runner this is...
     div(v-if='data')
       h2.contain Strat runner
       .grd.contain
@@ -75,7 +75,7 @@
                 .grd-row-col-3-6 {{ round(report.alpha) }} {{ data.watch.currency }}
         p(v-if='watcher')
           em This strat runner gets data from
-            router-link(:to='"/live-gekkos/watcher/" + watcher.id') this market watcher
+            router-link(:to='"/live/watcher/" + watcher.id') this market watcher
           | .
       template(v-if='!isLoading')
         h3.contain Market graph

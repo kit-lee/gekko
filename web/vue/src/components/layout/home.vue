@@ -2,7 +2,7 @@
   section.contain.grd-row
     .grd-row-col-3-6(v-html='left')
     .grd-row-col-3-6.txt--center
-      
+
 </template>
 
 <script>
@@ -28,9 +28,7 @@ export default {
     }
   },
   computed: {
-    imageUrl: function() {
-      return basePath + 'assets/gekko.jpg';
-    }
+
   }
 }
 </script>
