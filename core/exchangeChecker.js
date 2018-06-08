@@ -20,7 +20,7 @@ Checker.prototype.getExchangeCapabilities = function(slug) {
   var capabilities;
 
   if(!fs.existsSync(dirs.exchanges + slug + '.js'))
-    util.die(`Gekko does not know exchange "${slug}"`);
+    util.die(`BitBot does not know exchange "${slug}"`);
 
   var Trader = require(dirs.exchanges + slug);
   capabilities = Trader.getCapabilities();
@@ -34,27 +34,27 @@ Checker.prototype.cantMonitor = function(conf) {
   var exchange = this.getExchangeCapabilities(slug);
 
   if(!exchange)
-    return 'Gekko does not support the exchange ' + slug;
+    return 'BitBot does not support the exchange ' + slug;
 
   var name = exchange.name;
 
   if('monitorError' in exchange)
-    return 'At this moment Gekko can\'t monitor ' + name +  ', find out more info here:\n\n' + exchange.monitorError;
+    return 'At this moment BitBot can\'t monitor ' + name +  ', find out more info here:\n\n' + exchange.monitorError;
 
   var name = exchange.name;
 
   if(!_.contains(exchange.currencies, conf.currency))
-    return 'Gekko only supports the currencies [ ' + exchange.currencies.join(', ') + ' ] at ' + name + ' (not ' + conf.currency + ')';
+    return 'BitBot only supports the currencies [ ' + exchange.currencies.join(', ') + ' ] at ' + name + ' (not ' + conf.currency + ')';
 
   if(!_.contains(exchange.assets, conf.asset))
-    return 'Gekko only supports the assets [ ' + exchange.assets.join(', ') + ' ]  at ' + name + ' (not ' + conf.asset + ')';
+    return 'BitBot only supports the assets [ ' + exchange.assets.join(', ') + ' ]  at ' + name + ' (not ' + conf.asset + ')';
 
   var pair = _.find(exchange.markets, function(p) {
     return p.pair[0] === conf.currency && p.pair[1] === conf.asset;
   });
 
   if(!pair)
-    return 'Gekko does not support this currency/assets pair at ' + name;
+    return 'BitBot does not support this currency/assets pair at ' + name;
 
   // everyting okay
   return false;
@@ -72,7 +72,7 @@ Checker.prototype.cantFetchFullHistory = function(conf) {
   var name = exchange.name;
 
   if(!exchange.providesFullHistory)
-    return 'The exchange ' + name + ' does not provide full history (or Gekko doesn\'t support importing it)';
+    return 'The exchange ' + name + ' does not provide full history (or BitBot doesn\'t support importing it)';
 
   if ("exchangeMaxHistoryAge" in exchange) {
     if (moment(config.importer.daterange.from) < moment().subtract(exchange.exchangeMaxHistoryAge, "days")) {
@@ -92,7 +92,7 @@ Checker.prototype.cantTrade = function(conf) {
   var name = exchange.name;
 
   if(!exchange.tradable)
-    return 'At this moment Gekko can\'t trade at ' + name + '.';
+    return 'At this moment BitBot can\'t trade at ' + name + '.';
 
   if(conf.key === 'your-key')
     return '"your-key" is not a valid API key';

@@ -24,7 +24,7 @@ Kodi.prototype.setup = function(done) {
         if(kodiConfig.sendMessageOnStart) {
             var currency = config.watch.currency;
             var asset = config.watch.asset;
-            var title = "Gekko Started";
+            var title = "BitBot Started";
             var message = `Watching ${this.exchange} - ${currency}/${asset}`;
             this.mail(title, message);
         } else {
@@ -41,7 +41,7 @@ Kodi.prototype.processCandle = function(candle, done) {
 };
 
 Kodi.prototype.processAdvice = function(advice) {
-    var title = `Gekko: Going ${advice.recommendation} @ ${this.price}`
+    var title = `Muses BitBot: Going ${advice.recommendation} @ ${this.price}`
     var message = `${this.exchange} ${config.watch.currency}/${config.watch.asset}`;
     this.mail(title, message);
 };

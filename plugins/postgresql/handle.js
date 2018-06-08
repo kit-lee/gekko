@@ -43,7 +43,7 @@ checkClient.connect(function(err){
     util.die(err);
   }
   log.debug("Check database exists: "+dbName);
-  query = checkClient.query("select count(*) from pg_catalog.pg_database where datname = $1",[dbName], 
+  query = checkClient.query("select count(*) from pg_catalog.pg_database where datname = $1",[dbName],
     (err, res) => {
       if(err) {
         util.die(err);
@@ -67,7 +67,7 @@ checkClient.connect(function(err){
         }else if(mode === 'backtest') {
           util.die(`History does not exist for exchange ${config.watch.exchange}.`);
         }else{
-          util.die(`Start gekko first in realtime mode to create tables. You are currently in the '${mode}' mode.`);
+          util.die(`Start bitbot first in realtime mode to create tables. You are currently in the '${mode}' mode.`);
         }
       }else{ //database exists
         log.debug("Database exists: "+dbName);
@@ -78,7 +78,7 @@ checkClient.connect(function(err){
           }
           log.debug("Postgres connected to "+dbName);
         });
-      }  
+      }
     });
 });
 

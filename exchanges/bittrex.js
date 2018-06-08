@@ -108,7 +108,7 @@ Trader.prototype.getPortfolio = function(callback) {
       log.info('asset:', this.asset);
       log.info('currency:', this.currency);
       log.info('exchange data:', data);
-      util.die('Gekko was unable to set the portfolio');
+      util.die('BitBot was unable to set the portfolio');
     }
 
     var portfolio = [
@@ -313,12 +313,7 @@ Trader.prototype.getTrades = function(since, callback, descending) {
     // Edge case, see here:
     // @link https://github.com/askmike/gekko/issues/479
     if(firstFetch && _.size(result) === 50000)
-      util.die(
-        [
-          'Bittrex did not provide enough data. Read this:',
-          'https://github.com/askmike/gekko/issues/479'
-        ].join('\n\n')
-      );
+      util.die('Bittrex did not provide enough data.');
 
       result = _.map(result, function(trade) {
         var mr = {

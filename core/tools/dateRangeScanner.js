@@ -42,7 +42,7 @@ var scan = function(done) {
 
       // There is a candle for every minute
       if(res.available === optimal + 1) {
-        log.info('Gekko is able to fully use the local history.');
+        log.info('BitBot is able to fully use the local history.');
         return done(false, [{
           from: first,
           to: last
@@ -54,7 +54,7 @@ var scan = function(done) {
       var missing = optimal - res.available + 1;
 
       log.info(`The database has ${missing} candles missing, Figuring out which ones...`);
-      
+
       var iterator = {
         from: last - (BATCH_SIZE * 60),
         to: last
@@ -92,13 +92,13 @@ var scan = function(done) {
             iterator.to -= BATCH_SIZE * 60;
           },
           () => {
-            
+
             if(!_.size(batches))
               util.die('Not enough data to work with (please manually set a valid `backtest.daterange`)..', true);
 
             // batches is now a list like
             // [ {from: unix, to: unix } ]
-            
+
             var ranges = [ batches.shift() ];
 
             _.each(batches, batch => {

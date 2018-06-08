@@ -89,7 +89,7 @@ var util = {
     }
   },
   logVersion: function() {
-    return  `Gekko version: v${util.getVersion()}`
+    return  `Muses BitBot version: v${util.getVersion()}`
     + `\nNodejs version: ${process.version}`;
   },
   die: function(m, soft) {
@@ -102,7 +102,7 @@ var util = {
       if(soft) {
         log('\n ERROR: ' + m + '\n\n');
       } else {
-        log('\n\nGekko encountered an error and can\'t continue');
+        log('\n\nBitBot encountered an error and can\'t continue');
         log('\nError:\n');
         log(m, '\n\n');
         log('\nMeta debug info:\n');

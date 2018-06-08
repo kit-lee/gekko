@@ -86,7 +86,7 @@ server.listen(config.api.port, config.api.host, '::', () => {
     var location = `http://${host}`;
   }
 
-  console.log('Serving Gekko UI on ' + location +  '\n');
+  console.log('Serving BitBot UI on ' + location +  '\n');
 
 
   // only open a browser when running `node gekko`

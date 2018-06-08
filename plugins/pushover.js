@@ -23,7 +23,7 @@ Pushover.prototype.setup = function() {
 
     if(pushoverConfig.sendPushoverOnStart) {
       this.send(
-        "Gekko has started",
+        "BitBot has started",
         [
           "I've just started watching ",
           config.watch.exchange,

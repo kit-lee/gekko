@@ -1,6 +1,6 @@
 /*
 
-  A pipeline implements a full Gekko Flow based on a config and 
+  A pipeline implements a full Gekko Flow based on a config and
   a mode. The mode is an abstraction that tells Gekko what market
   to load (realtime, backtesting or importing) while making sure
   all enabled plugins are actually supported by that market.
@@ -164,7 +164,7 @@ var pipeline = (settings) => {
       next();
   }
 
-  log.info('Setting up Gekko in', mode, 'mode');
+  log.info('Setting up BitBot in', mode, 'mode');
   log.info('');
 
   async.series(

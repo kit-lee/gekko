@@ -27,7 +27,7 @@ Pushbullet.prototype.setup = function(done){
             var exchange = config.watch.exchange;
             var currency = config.watch.currency;
             var asset = config.watch.asset;
-            var body = "Gekko has started, Ive started watching "
+            var body = "BitBot has started, Ive started watching "
                 +exchange
                 +" "
                 +currency
@@ -52,7 +52,7 @@ Pushbullet.prototype.processAdvice = function(advice) {
 	if (advice.recommendation == "soft" && pushbulletConfig.muteSoft) return;
 
 	var text = [
-        'Gekko is watching ',
+        'BitBot is watching ',
         config.watch.exchange,
         ' and has detected a new trend, advice is to go ',
         advice.recommendation,

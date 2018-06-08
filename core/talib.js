@@ -10,7 +10,7 @@ try {
     return;
 }
 
-var talibError = 'Gekko was unable to configure talib indicator:\n\t';
+var talibError = 'BitBot was unable to configure talib indicator:\n\t';
 var talibGTEv103 = semver.gte(talib.version, '1.0.3');
 
 // Wrapper that executes a talib indicator

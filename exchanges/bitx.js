@@ -113,7 +113,7 @@ Trader.prototype.getPortfolio = function(callback) {
             !_.isNumber(assetAmount) || _.isNaN(assetAmount) ||
             !_.isNumber(currencyAmount) || _.isNaN(currencyAmount)
         ) {
-            return log.error('account balance error: Gekko is unable to trade with ', this.currency.toUpperCase(), ':', currencyAmount, ' or ', this.asset.toUpperCase(), ':', assetAmount);
+            return log.error('account balance error: BitBot is unable to trade with ', this.currency.toUpperCase(), ':', currencyAmount, ' or ', this.asset.toUpperCase(), ':', assetAmount);
         }
         var portfolio = [
             { name: this.asset.toUpperCase(), amount: assetAmount - assetHold },

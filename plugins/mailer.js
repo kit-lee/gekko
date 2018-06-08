@@ -40,7 +40,7 @@ Mailer.prototype.setup = function(done) {
 
     if(mailConfig.sendMailOnStart) {
       this.mail(
-        "Gekko has started",
+        "BitBot has started",
         [
           "I've just started watching ",
           config.watch.exchange,
@@ -66,12 +66,8 @@ Mailer.prototype.setup = function(done) {
     var prompt = require('prompt-lite');
     prompt.start();
     var warning = [
-      '\n\n\tYou configured Gekko to mail you advice, Gekko needs your email',
-      'password to send emails (to you). Gekko is an opensource project',
-      '[ http://github.com/askmike/gekko ], you can take my word but always',
-      'check the code yourself.',
-      '\n\n\tWARNING: If you have not downloaded Gekko from the github page above we',
-      'CANNOT guarantuee that your email address & password are safe!\n'
+      '\n\n\tYou configured Muses BitBot to mail you advice, BitBot needs your email',
+      'password to send emails (to you). '
     ].join('\n\t');
     log.warn(warning);
     prompt.get({name: 'password', hidden: true}, _.bind(setupMail, this));
@@ -102,7 +98,7 @@ Mailer.prototype.processAdvice = function(advice) {
   if (advice.recommendation == "soft" && mailConfig.muteSoft) return;
 
   var text = [
-    'Gekko is watching ',
+    'BitBot is watching ',
     config.watch.exchange,
     ' and has detected a new trend, advice is to go ',
     advice.recommendation,

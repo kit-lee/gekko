@@ -20,7 +20,7 @@ Slack.prototype.setup = function(done) {
 
     const setupSlack = function(error, result) {
         if(slackConfig.sendMessageOnStart){
-          const body = this.createResponse("#439FE0","Gekko started!") ;
+          const body = this.createResponse("#439FE0","BitBot started!") ;
           this.send(body);
         }else{
             log.debug('Skipping Send message on startup')

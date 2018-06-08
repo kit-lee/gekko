@@ -10,7 +10,7 @@ try {
     return;
 }
 
-var tulindError = 'Gekko was unable to configure Tulip Indicators:\n\t';
+var tulindError = 'BitBot was unable to configure Tulip Indicators:\n\t';
 
 // Wrapper that executes a tulip indicator
 var execute = function(callback, params) {

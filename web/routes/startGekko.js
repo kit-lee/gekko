@@ -74,7 +74,7 @@ module.exports = function *() {
         return;
 
       errored = true;
-      console.error('RECEIVED ERROR IN GEKKO', id);
+      console.error('RECEIVED ERROR IN BITBOT', id);
       console.error(err);
       return broadcast({
         type: 'gekko_error',

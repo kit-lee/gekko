@@ -43,7 +43,7 @@ Stitcher.prototype.prepareHistoricalData = function(done) {
 
   var requiredHistory = config.tradingAdvisor.candleSize * config.tradingAdvisor.historySize;
   var Reader = require(dirs.plugins + config.adapter + '/reader');
-  
+
   this.reader = new Reader;
 
   log.info(
@@ -94,10 +94,10 @@ Stitcher.prototype.prepareHistoricalData = function(done) {
     var minutesAgo = endTime.diff(idealExchangeStartTime, 'minutes');
     var maxMinutesAgo = 4 * 60; // 4 hours
     if(minutesAgo > maxMinutesAgo) {
-      log.info('\tPreventing Gekko from requesting', minutesAgo, 'minutes of history.');
+      log.info('\tPreventing BitBot from requesting', minutesAgo, 'minutes of history.');
       idealExchangeStartTime = endTime.clone().subtract(maxMinutesAgo, 'minutes');
       idealExchangeStartTimeTS = idealExchangeStartTime.unix();
-    } 
+    }
 
     log.debug('\tFetching exchange data since', this.ago(idealExchangeStartTimeTS))
     this.checkExchangeTrades(idealExchangeStartTime, function(err, exchangeData) {
@@ -137,7 +137,7 @@ Stitcher.prototype.prepareHistoricalData = function(done) {
             Math.round((localData.from - idealStartTime.unix()) / 60),
             'minutes are missing.')
           log.info('\tSeeding the trading method with',
-            'partial historical data (Gekko needs more time before',
+            'partial historical data (BitBot needs more time before',
             'it can give advice).'
           );
         }
@@ -194,7 +194,7 @@ Stitcher.prototype.checkExchangeTrades = function(since, next) {
   watcher.getTrades(since, function(e, d) {
     if(_.isEmpty(d))
       return util.die(
-        `Gekko tried to retrieve data since ${since.format('YYYY-MM-DD HH:mm:ss')}, however
+        `BitBot tried to retrieve data since ${since.format('YYYY-MM-DD HH:mm:ss')}, however
         ${provider} did not return any trades.`
       );
 

@@ -19,7 +19,7 @@ IFTTT.prototype.setup = function(done) {
       var exchange = config.watch.exchange;
       var currency = config.watch.currency;
       var asset = config.watch.asset;
-      var body = "Gekko has started, Ive started watching "
+      var body = "BitBot has started, Ive started watching "
         +exchange
         +" "
         +currency
@@ -41,7 +41,7 @@ IFTTT.prototype.processCandle = function(candle, done) {
 };
 
 IFTTT.prototype.portfolioUpdate = function(portfolio) {
-  var message = "Gekko has detected a portfolio update. " +
+  var message = "BitBot has detected a portfolio update. " +
     "Your current " + config.watch.currency + " balance is " + portfolio.currency + '.' +
     "Your current " + config.watch.exchange + " balance is " + portfolio.assert + '.';
   this.send(message);
@@ -51,7 +51,7 @@ IFTTT.prototype.processAdvice = function(advice) {
   if (advice.recommendation == 'soft' && iftttConfig.muteSoft) return;
 
   const text = [
-    'Gekko is watching ',
+    'BitBot is watching ',
     config.watch.exchange,
     ' and has detected a new trend, advice is to go ',
     advice.recommendation,
