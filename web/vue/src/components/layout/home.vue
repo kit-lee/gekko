@@ -1,4 +1,4 @@
-<template lang='jade'>
+<template lang='pug'>
   section.contain.grd-row
     .grd-row-col-3-6(v-html='left')
     .grd-row-col-3-6.txt--center
@@ -7,7 +7,6 @@
 
 <script>
 import marked from '../../tools/marked';
-import { basePath } from '../../tools/api';
 
 const left = marked(`
 
@@ -26,9 +25,6 @@ export default {
     return {
       left
     }
-  },
-  computed: {
-
   }
 }
 </script>

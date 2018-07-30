@@ -1,4 +1,4 @@
-<template lang='jade'>
+<template lang='pug'>
   div
     #top
     header.bg--off-white.grd
@@ -21,7 +21,6 @@ export default {}
 <style>
 .menu {
   display: flex;
-  width: 100%;
   flex-direction: row;
   margin-top: 0;
   margin-bottom: 2rem;

@@ -2,7 +2,7 @@
 
 Strategies are the core of Gekko's trading bot. They look at the market and decide what to do based on technical analysis indicators. As of now all strategies are limited to a single market on a single exchange.
 
-Gekko currently comes with [a couple of strategies](./example_strategies.md) out of the box. Besides those you can also write your own strategy in javascript. The easiest way to do this is to customize the file `gekko/strategies/custom.js`.
+Gekko currently comes with [a couple of strategies](./introduction.md) out of the box. Besides those you can also write your own strategy in javascript. The easiest way to do this is to customize the file `gekko/strategies/custom.js`.
 
 ## Creating a strategy
 
@@ -75,7 +75,7 @@ If you find out in the check function that you want to give new advice to the tr
     this.advice('short');
     // or
     this.advice('long');
-    
+
 ### candle variables
 
 The following list of candle variables can be used when writing strategies:
@@ -85,7 +85,7 @@ The following list of candle variables can be used when writing strategies:
  - candle.low: the lowest price of the candle
  - candle.volume: the trading volume of that candle
  - candle.trades: number of trades in that candle
- 
+
 Keep in mind that these variables will give you different results depending on the time window set (1 minute, 15 minutes, 1 hour, etc.) for constructing the candle.
 
 
@@ -93,14 +93,14 @@ Keep in mind that these variables will give you different results depending on t
 
 This a basic strategy example that buys and sells BTC/USDT when it hits a specific price.
 
-    // Let's create our own buy and sell strategy 
+    // Let's create our own buy and sell strategy
     var strat = {};
 
     // Prepare everything our strat needs
     strat.init = function() {
       // setting buy price
       this.buyPrice = 2000;
-      
+
       // setting sell price
       this.sellPrice = 2500;
     }
@@ -126,7 +126,7 @@ This a basic strategy example that buys and sells BTC/USDT when it hits a specif
             console.log("buying BTC @", candle.close);
             return;
         }
-        
+
         // sell when it hits sell price
         if(candle.close >= this.sellPrice) {
             this.advice("short");
@@ -174,7 +174,7 @@ or
 The first parameter is the name, the second is the indicator type you want and the third is an object with all indicator parameters. If you want an MACD indicator you can do it like so:
 
 In your init method:
-  
+
     // add a native indicator
     var parameters = {short: 10, long: 20, signal: 9};
     this.addIndicator('mynativemacd', 'MACD', parameters);
@@ -191,7 +191,7 @@ In your check or update method:
 
     var result = this.indicators.mytalibmacd.result;
 
-See the [TA-lib indicators](./talib_indicators.md) document for a list of all suppported TA-lib indicators and their required parameters.
+See the [TA-lib indicators](./talib_indicators.md) document for a list of all supported TA-lib indicators and their required parameters.
 
 See the [Tulip indicators](./tulip_indicators.md) document for a list of all supported Tulip indicators and their required parameters.
 

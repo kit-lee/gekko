@@ -1,9 +1,8 @@
-<template lang='jade'>
+<template lang='pug'>
   footer.p2.bg--off-white
     .contain
       p
         em Contact us with email: im@muses.cc
-      p 
 </template>
 
 <script>
