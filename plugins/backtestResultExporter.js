@@ -27,10 +27,17 @@ const BacktestResultExporter = function() {
   if(!config.backtestResultExporter.data.stratCandles)
     this.processStratCandles = null;
 
+  if(!config.backtestResultExporter.data.portfolioValues)
+    this.processPortfolioValueChange = null;
+
   if(!config.backtestResultExporter.data.trades)
     this.processTradeCompleted = null;
 
   _.bindAll(this);
+}
+
+BacktestResultExporter.prototype.processPortfolioValueChange = function(portfolio) {
+  this.portfolioValue = portfolio.balance;
 }
 
 BacktestResultExporter.prototype.processStratCandle = function(candle) {
@@ -47,6 +54,9 @@ BacktestResultExporter.prototype.processStratCandle = function(candle) {
       start: candle.start.unix()
     }
   }
+
+  if(config.backtestResultExporter.data.portfolioValues)
+    strippedCandle.portfolioValue = this.portfolioValue;
 
   this.stratCandles.push(strippedCandle);
 };
@@ -106,7 +116,7 @@ BacktestResultExporter.prototype.finalize = function(done) {
 };
 
 BacktestResultExporter.prototype.writeToDisk = function(backtest, next) {
-  const now = moment().format('YYYY-MM-DD HH-mm-ss');
+  const now = moment().format('YYYY-MM-DD_HH-mm-ss');
   const filename = `backtest-${config.tradingAdvisor.method}-${now}.json`;
   fs.writeFile(
     util.dirs().gekko + filename,
