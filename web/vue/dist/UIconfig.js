@@ -14,7 +14,7 @@ const CONFIG = {
   ui: {
     ssl: true,
     host: 'bitbot.91zmt.com',
-    port: 8070,
+    port: 443,
     path: '/'
   },
   adapter: 'sqlite'
