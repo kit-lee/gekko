@@ -7,12 +7,12 @@
 const CONFIG = {
   headless: false,
   api: {
-    host: '0.0.0.0',
+    host: 'bitbot.91zmt.com',
     port: 8070,
     timeout: 120000 // 2 minutes
   },
   ui: {
-    ssl: false,
+    ssl: true,
     host: '148.163.168.121',
     port: 8070,
     path: '/'
