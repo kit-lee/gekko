@@ -13,7 +13,7 @@ const CONFIG = {
   },
   ui: {
     ssl: true,
-    host: '148.163.168.121',
+    host: 'bitbot.91zmt.com',
     port: 8070,
     path: '/'
   },
