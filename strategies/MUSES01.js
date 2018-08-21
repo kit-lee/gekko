@@ -4,7 +4,14 @@ var strat = {};
 
 // Prepare everything our strat needs
 strat.init = function() {
+  this.trend = {
+    direction: 'none',
+    duration: 0,
+    persisted: false,
+    adviced: false
+  };
   this.lastResultWILLR = null;
+  this.requiredHistory = this.tradingAdvisor.historySize;
   this.addTalibIndicator('myWILLR', 'WILLR');
   this.addTalibIndicator('myRSI', 'RSI');
 }
@@ -35,39 +42,58 @@ strat.check = function() {
   }
 
   if (this.settings.rsi.low > resultRSI) {
-    if(this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR){
-      this.advice('long');
-      log.info('buying...');
-      return;
-    }
-  }
+    if (this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR) {
+      // new trend detected
+      if (this.trend.direction !== 'up') {
+        // reset the state for the new trend
+        this.trend = {
+          duration: 0,
+          persisted: false,
+          direction: 'up',
+          adviced: false
+        };
+      }
 
-  if (this.settings.rsi.high < resultRSI) {
+      this.trend.duration++;
+
+      if(this.trend.duration >= this.settings.thresholds.persistence)
+        this.trend.persisted = true;
+
+      if(this.trend.persisted && !this.trend.adviced) {
+        this.trend.adviced = true;
+        this.advice('long');
+      } else
+        this.advice();
+    }
+  }else if (this.settings.rsi.high < resultRSI) {
     if(this.settings.willr.down > resultWILLR && this.lastResultWILLR > resultWILLR){
-      this.advice('short');
-      log.info('selling...');
-      return;
+
+      // new trend detected
+      if(this.trend.direction !== 'down')
+        this.trend = {
+          duration: 0,
+          persisted: false,
+          direction: 'down',
+          adviced: false
+        };
+
+      this.trend.duration++;
+
+      log.debug('In downtrend since', this.trend.duration, 'candle(s)');
+
+      if(this.trend.duration >= this.settings.thresholds.persistence)
+        this.trend.persisted = true;
+
+      if(this.trend.persisted && !this.trend.adviced) {
+        this.trend.adviced = true;
+        this.advice('short');
+      } else
+        this.advice();
     }
+  } else {
+    this.advice();
   }
 
-  this.advice();
-
-  // buy when it hits buy price
-  /*if(candle.close <= this.buyPrice) {
-    this.advice("long");
-    // do some output
-    console.log("buying BTC @", candle.close);
-    return;
-  }
-
-  // sell when it hits sell price
-  if(candle.close >= this.sellPrice) {
-    this.advice("short");
-    // do some output
-    console.log("selling BTC @", candle.close);
-    console.log("Profit:", (candle.close-this.buyPrice));
-    return;
-  }*/
 }
 
 module.exports = strat;

@@ -88,11 +88,6 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.on('error', (err, ctx) => {
-  console.error(err);
-});
-
-
   server.timeout = config.api.timeout || 120000;
 server.on('request', app.callback());
 server.listen(config.api.port, config.api.host, '::', () => {
