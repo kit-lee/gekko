@@ -10,10 +10,14 @@ strat.init = function() {
     persisted: false,
     adviced: false
   };
+  params = {
+    optInTimePeriod: 2
+  }
+
   this.lastResultWILLR = null;
   this.requiredHistory = this.tradingAdvisor.historySize;
-  this.addTalibIndicator('myWILLR', 'WILLR');
-  this.addTalibIndicator('myRSI', 'RSI');
+  this.addTalibIndicator('myWILLR', 'WILLR',params);
+  this.addTalibIndicator('myRSI', 'RSI',params);
 }
 
 // What happens on every new candle?
@@ -56,7 +60,7 @@ strat.check = function() {
 
       this.trend.duration++;
 
-      if(this.trend.duration >= this.settings.thresholds.persistence)
+      if(this.trend.duration >= 1)
         this.trend.persisted = true;
 
       if(this.trend.persisted && !this.trend.adviced) {
