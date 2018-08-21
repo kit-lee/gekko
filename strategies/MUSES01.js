@@ -1,4 +1,4 @@
-var log = require('../core/log.js');
+//var log = require('../core/log.js');
 // Let's create our own buy and sell strategy
 var strat = {};
 
