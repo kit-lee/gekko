@@ -64,6 +64,8 @@ strat.check = function() {
         this.advice('long');
       } else
         this.advice();
+    }else{
+      this.advice();
     }
   }else if (this.settings.rsi.high < resultRSI) {
     if(this.settings.willr.down > resultWILLR && this.lastResultWILLR > resultWILLR){
@@ -89,6 +91,8 @@ strat.check = function() {
         this.advice('short');
       } else
         this.advice();
+    }else{
+      this.advice();
     }
   } else {
     this.advice();
