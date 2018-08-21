@@ -22,13 +22,15 @@ strat.log = function() {
 // Based on the newly calculated
 // information, check if we should
 // update or not.
-strat.check = function(candle) {
+strat.check = function() {
   var resultWILLR = this.talibIndicators.myWILLR.result;
   var resultRSI = this.talibIndicators.RSI.result;
+  console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
   log.info('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
   if (this.lastResultWILLR === null) {
     this.lastResultWILLR = resultWILLR;
+    this.advice();
     return;
   }
 
@@ -36,6 +38,7 @@ strat.check = function(candle) {
     if(this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR){
       this.advice('long');
       log.info('buying...');
+      return;
     }
   }
 
@@ -43,8 +46,11 @@ strat.check = function(candle) {
     if(this.settings.willr.down > resultWILLR && this.lastResultWILLR > resultWILLR){
       this.advice('short');
       log.info('selling...');
+      return;
     }
   }
+
+  this.advice();
 
   // buy when it hits buy price
   /*if(candle.close <= this.buyPrice) {
