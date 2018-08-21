@@ -35,7 +35,7 @@ strat.log = function() {
 // update or not.
 strat.check = function() {
   var resultWILLR = this.talibIndicators.myWILLR.result;
-  var resultRSI = this.talibIndicators.RSI.result;
+  var resultRSI = this.talibIndicators.myRSI.result;
   console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
   if (this.lastResultWILLR === null) {
