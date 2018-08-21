@@ -23,8 +23,8 @@ strat.log = function() {
 // information, check if we should
 // update or not.
 strat.check = function(candle) {
-  var resultWILLR = this.indicators.myWILLR.result;
-  var resultRSI = this.indicators.RSI.result;
+  var resultWILLR = this.talibIndicators.myWILLR.result;
+  var resultRSI = this.talibIndicators.RSI.result;
   log.info('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
   if (this.lastResultWILLR === null) {
