@@ -1,0 +1,7 @@
+[rsi]
+low = 20
+high = 80
+
+[willr]
+up = -50
+down = -80
