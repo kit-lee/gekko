@@ -14,7 +14,7 @@ strat.init = function() {
     optInTimePeriod: this.settings.interval
   }
 
-  this.lastResultWILLR = null;
+  this.lastResultWILLR = undefined;
   this.requiredHistory = this.tradingAdvisor.historySize;
   this.addTalibIndicator('myWILLR', 'willr', params);
   this.addTalibIndicator('myRSI', 'rsi', params);
@@ -43,7 +43,7 @@ strat.check = function() {
 
   //console.log('WILLR=' + resultWILLR.outReal + ', RSI=' + resultRSI.outReal);
 
-  if (this.lastResultWILLR === null) {
+  if (this.lastResultWILLR === undefined) {
     this.lastResultWILLR = resultWILLR.outReal;
     this.advice();
     return;
