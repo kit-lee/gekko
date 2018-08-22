@@ -11,12 +11,12 @@ strat.init = function() {
     adviced: false
   };
   params = {
-    optInTimePeriod: 14
+    optInTimePeriod: this.settings.interval
   }
 
   this.lastResultWILLR = null;
   this.requiredHistory = this.tradingAdvisor.historySize;
-  //this.addTalibIndicator('myWILLR', 'willr', params);
+  this.addTalibIndicator('myWILLR', 'willr', params);
   this.addTalibIndicator('myRSI', 'rsi', params);
 }
 
@@ -35,25 +35,22 @@ strat.log = function() {
 // update or not.
 strat.check = function() {
 
-  //this.advice();
-  //var resultWILLR = this.talibIndicators['myWILLR'].result;
+  var resultWILLR = this.talibIndicators['myWILLR'].result;
   var resultRSI = this.talibIndicators['myRSI'].result;
   /*for (var prop in resultRSI) {
     console.log("result." + prop + " = " + resultRSI[prop]);
   }*/
 
-  log.info("RSI result = " + resultRSI.outReal);
-  //console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
+  console.log('WILLR=' + resultWILLR.outReal + ', RSI=' + resultRSI.outReal);
 
   /*if (this.lastResultWILLR === null) {
     this.lastResultWILLR = resultWILLR;
     this.advice();
     return;
   }*/
-  log.info("this.settings.rsi = " + this.settings.rsi);
 
   if (this.settings.rsi.low > resultRSI.outReal) {
-    //if (this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR) {
+    if (this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR.outReal) {
       // new trend detected
       if (this.trend.direction !== 'up') {
         // reset the state for the new trend
@@ -75,11 +72,11 @@ strat.check = function() {
         this.advice('long');
       } else
         this.advice();
-    //}else{
-    //  this.advice();
-    //}
+    }else{
+      this.advice();
+    }
   }else if (this.settings.rsi.high < resultRSI.outReal) {
-    //if(this.settings.willr.down > resultWILLR && this.lastResultWILLR > resultWILLR){
+    if(this.settings.willr.down > resultWILLR && this.lastResultWILLR > resultWILLR.outReal){
 
       // new trend detected
       if(this.trend.direction !== 'down')
@@ -92,8 +89,6 @@ strat.check = function() {
 
       this.trend.duration++;
 
-      log.debug('In downtrend since', this.trend.duration, 'candle(s)');
-
       if(this.trend.duration >= 1)
         this.trend.persisted = true;
 
@@ -102,9 +97,9 @@ strat.check = function() {
         this.advice('short');
       } else
         this.advice();
-    //}else{
-    //  this.advice();
-    //}
+    }else{
+      this.advice();
+    }
   } else {
     this.advice();
   }

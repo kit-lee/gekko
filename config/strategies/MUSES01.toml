@@ -1,3 +1,5 @@
+interval = 14
+
 [rsi]
 low = 20
 high = 80
