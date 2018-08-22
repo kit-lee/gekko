@@ -43,15 +43,15 @@ strat.check = function() {
 
   //console.log('WILLR=' + resultWILLR.outReal + ', RSI=' + resultRSI.outReal);
 
-  /*if (this.lastResultWILLR === null) {
-    this.lastResultWILLR = resultWILLR;
+  if (this.lastResultWILLR === null) {
+    this.lastResultWILLR = resultWILLR.outReal;
     this.advice();
     return;
-  }*/
+  }
 
   if (this.settings.rsi.low > resultRSI.outReal) {
     console.log('low=' + this.settings.rsi.low + ' and rsi=' + resultRSI.outReal);
-    console.log('up=' + this.settings.willr.up + ' and rsi=' + resultWILLR.outReal);
+    console.log('up=' + this.settings.willr.up + ' and lastwillr=' + this.lastResultWILLR + ' willr=' + resultWILLR.outReal);
     if (this.settings.willr.up < resultWILLR.outReal && this.lastResultWILLR < resultWILLR.outReal) {
       // new trend detected
       if (this.trend.direction !== 'up') {
