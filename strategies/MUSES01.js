@@ -50,9 +50,9 @@ strat.check = function() {
   }
 
   if (this.settings.rsi.low > resultRSI.outReal) {
-    console.log('low=' + this.settings.rsi.low + ' and rsi=' + resultRSI.outReal);
-    console.log('up=' + this.settings.willr.up + ' and lastwillr=' + this.lastResultWILLR + ' willr=' + resultWILLR.outReal);
+    console.log('rsi buy chance! rsi=' + resultRSI.outReal);
     if (this.settings.willr.up < resultWILLR.outReal && this.lastResultWILLR < resultWILLR.outReal) {
+      console.log('willr is up!  ' + this.lastResultWILLR + ' to ' + resultWILLR.outReal);
       // new trend detected
       if (this.trend.direction !== 'up') {
         // reset the state for the new trend
@@ -71,6 +71,7 @@ strat.check = function() {
 
       if(this.trend.persisted && !this.trend.adviced) {
         this.trend.adviced = true;
+        console.log('buy!');
         this.advice('long');
       } else
         this.advice();
@@ -78,10 +79,7 @@ strat.check = function() {
       this.advice();
     }
   }else if (this.settings.rsi.high < resultRSI.outReal) {
-    console.log('high=' + this.settings.rsi.high + ' and rsi=' + resultRSI.outReal);
-    console.log('down=' + this.settings.willr.down + ' and rsi=' + resultWILLR.outReal);
-    if(this.settings.willr.down > resultWILLR.outReal && this.lastResultWILLR > resultWILLR.outReal){
-
+    console.log('rsi sell chance! rsi=' + resultRSI.outReal);
       // new trend detected
       if(this.trend.direction !== 'down')
         this.trend = {
@@ -98,13 +96,34 @@ strat.check = function() {
 
       if(this.trend.persisted && !this.trend.adviced) {
         this.trend.adviced = true;
+        console.log('sell!');
         this.advice('short');
       } else
         this.advice();
-    }else{
+
+  }else if(this.settings.willr.down > resultWILLR.outReal && this.lastResultWILLR > resultWILLR.outReal){
+    console.log('willr sell chance! rsi=' + resultWILLR.outReal);
+    // new trend detected
+    if(this.trend.direction !== 'down')
+      this.trend = {
+        duration: 0,
+        persisted: false,
+        direction: 'down',
+        adviced: false
+      };
+
+    this.trend.duration++;
+
+    if(this.trend.duration >= 1)
+      this.trend.persisted = true;
+
+    if(this.trend.persisted && !this.trend.adviced) {
+      console.log('sell!');
+      this.trend.adviced = true;
+      this.advice('short');
+    } else
       this.advice();
-    }
-  } else {
+  }else {
     this.advice();
   }
 
