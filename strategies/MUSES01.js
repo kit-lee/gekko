@@ -38,11 +38,11 @@ strat.check = function() {
   //this.advice();
   //var resultWILLR = this.talibIndicators['myWILLR'].result;
   var resultRSI = this.talibIndicators['myRSI'].result;
-  for (var prop in resultRSI) {
+  /*for (var prop in resultRSI) {
     console.log("result." + prop + " = " + resultRSI[prop]);
-  }
+  }*/
 
-  log.info("RSI result = " + resultRSI);
+  log.info("RSI result = " + resultRSI.outReal);
   //console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
   /*if (this.lastResultWILLR === null) {
@@ -52,7 +52,7 @@ strat.check = function() {
   }*/
   log.info("this.settings.rsi = " + this.settings.rsi);
 
-  if (this.settings.rsi.low > resultRSI) {
+  if (this.settings.rsi.low > resultRSI.outReal) {
     //if (this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR) {
       // new trend detected
       if (this.trend.direction !== 'up') {
@@ -78,7 +78,7 @@ strat.check = function() {
     //}else{
     //  this.advice();
     //}
-  }else if (this.settings.rsi.high < resultRSI) {
+  }else if (this.settings.rsi.high < resultRSI.outReal) {
     //if(this.settings.willr.down > resultWILLR && this.lastResultWILLR > resultWILLR){
 
       // new trend detected
