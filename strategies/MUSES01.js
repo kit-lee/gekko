@@ -108,6 +108,7 @@ strat.check = function() {
     this.advice();
   }
 
+  this.lastResultWILLR = resultWILLR.outReal;
 }
 
 module.exports = strat;
