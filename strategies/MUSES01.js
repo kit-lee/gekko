@@ -35,7 +35,9 @@ strat.log = function() {
 // information, check if we should
 // update or not.
 strat.check = function() {
-  var resultWILLR = this.talibIndicators['myWILLR'].result;
+
+  this.advice();
+  /*var resultWILLR = this.talibIndicators['myWILLR'].result;
   var resultRSI = this.talibIndicators['myRSI'].result;
   console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
@@ -100,7 +102,7 @@ strat.check = function() {
     }
   } else {
     this.advice();
-  }
+  }*/
 
 }
 

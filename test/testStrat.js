@@ -4,6 +4,10 @@
 
 const talib = require('../core/talib');
 
-talib['WILLR'].create({
+talib['willr'].create({
+  optInTimePeriod: 2
+});
+
+talib['rsi'].create({
   optInTimePeriod: 2
 });
