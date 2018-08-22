@@ -11,7 +11,7 @@ strat.init = function() {
     adviced: false
   };
   params = {
-    optInTimePeriod: 2
+    optInTimePeriod: 14
   }
 
   this.lastResultWILLR = null;
