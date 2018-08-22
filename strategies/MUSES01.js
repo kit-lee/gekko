@@ -39,7 +39,7 @@ strat.check = function() {
   //var resultWILLR = this.talibIndicators['myWILLR'].result;
   var resultRSI = this.talibIndicators['myRSI'].result;
   for (var prop in resultRSI) {
-    console.log("result." + prop + " = " + obj[prop]);
+    console.log("result." + prop + " = " + resultRSI[prop]);
   }
 
   log.info("RSI result = " + resultRSI);
