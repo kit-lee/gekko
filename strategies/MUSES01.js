@@ -16,8 +16,9 @@ strat.init = function() {
 
   this.lastResultWILLR = null;
   this.requiredHistory = this.tradingAdvisor.historySize;
-  this.addTalibIndicator('myWILLR', 'WILLR',params);
-  this.addTalibIndicator('myRSI', 'RSI',params);
+  this.addTalibIndicator('myWILLR', 'willr', params);
+  this.addTalibIndicator('myRSI', 'rsi', params);
+  this.addIndicator()
 }
 
 // What happens on every new candle?
@@ -34,8 +35,8 @@ strat.log = function() {
 // information, check if we should
 // update or not.
 strat.check = function() {
-  var resultWILLR = this.talibIndicators.myWILLR.result;
-  var resultRSI = this.talibIndicators.myRSI.result;
+  var resultWILLR = this.talibIndicators['myWILLR'].result;
+  var resultRSI = this.talibIndicators['myRSI'].result;
   console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
   if (this.lastResultWILLR === null) {
