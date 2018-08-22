@@ -18,7 +18,6 @@ strat.init = function() {
   this.requiredHistory = this.tradingAdvisor.historySize;
   this.addTalibIndicator('myWILLR', 'willr', params);
   this.addTalibIndicator('myRSI', 'rsi', params);
-  this.addIndicator()
 }
 
 // What happens on every new candle?
@@ -36,8 +35,8 @@ strat.log = function() {
 // update or not.
 strat.check = function() {
 
-  this.advice();
-  /*var resultWILLR = this.talibIndicators['myWILLR'].result;
+  //this.advice();
+  var resultWILLR = this.talibIndicators['myWILLR'].result;
   var resultRSI = this.talibIndicators['myRSI'].result;
   console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
@@ -102,7 +101,7 @@ strat.check = function() {
     }
   } else {
     this.advice();
-  }*/
+  }
 
 }
 
