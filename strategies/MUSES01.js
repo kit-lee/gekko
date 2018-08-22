@@ -1,4 +1,4 @@
-//var log = require('../core/log.js');
+var log = require('../core/log.js');
 // Let's create our own buy and sell strategy
 var strat = {};
 
@@ -38,6 +38,7 @@ strat.check = function() {
   //this.advice();
   //var resultWILLR = this.talibIndicators['myWILLR'].result;
   var resultRSI = this.talibIndicators['myRSI'].result;
+  log.info("RSI result = " + resultRSI);
   //console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
   /*if (this.lastResultWILLR === null) {
@@ -45,6 +46,7 @@ strat.check = function() {
     this.advice();
     return;
   }*/
+  log.info("this.settings.rsi = " + this.settings.rsi);
 
   if (this.settings.rsi.low > resultRSI) {
     //if (this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR) {
@@ -88,7 +90,7 @@ strat.check = function() {
 
       log.debug('In downtrend since', this.trend.duration, 'candle(s)');
 
-      if(this.trend.duration >= this.settings.thresholds.persistence)
+      if(this.trend.duration >= 1)
         this.trend.persisted = true;
 
       if(this.trend.persisted && !this.trend.adviced) {
