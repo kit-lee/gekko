@@ -38,13 +38,13 @@ strat.check = function() {
   //this.advice();
   //var resultWILLR = this.talibIndicators['myWILLR'].result;
   var resultRSI = this.talibIndicators['myRSI'].result;
-  console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
+  //console.log('WILLR=' + resultWILLR + ', RSI=' + resultRSI);
 
-  if (this.lastResultWILLR === null) {
+  /*if (this.lastResultWILLR === null) {
     this.lastResultWILLR = resultWILLR;
     this.advice();
     return;
-  }
+  }*/
 
   if (this.settings.rsi.low > resultRSI) {
     //if (this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR) {
