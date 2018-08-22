@@ -41,7 +41,7 @@ strat.check = function() {
     console.log("result." + prop + " = " + resultRSI[prop]);
   }*/
 
-  console.log('WILLR=' + resultWILLR.outReal + ', RSI=' + resultRSI.outReal);
+  //console.log('WILLR=' + resultWILLR.outReal + ', RSI=' + resultRSI.outReal);
 
   /*if (this.lastResultWILLR === null) {
     this.lastResultWILLR = resultWILLR;
@@ -50,7 +50,9 @@ strat.check = function() {
   }*/
 
   if (this.settings.rsi.low > resultRSI.outReal) {
-    if (this.settings.willr.up < resultWILLR && this.lastResultWILLR < resultWILLR.outReal) {
+    console.log('low=' + this.settings.rsi.low + ' and rsi=' + resultRSI.outReal);
+    console.log('up=' + this.settings.willr.up + ' and rsi=' + resultWILLR.outReal);
+    if (this.settings.willr.up < resultWILLR.outReal && this.lastResultWILLR < resultWILLR.outReal) {
       // new trend detected
       if (this.trend.direction !== 'up') {
         // reset the state for the new trend
@@ -76,7 +78,9 @@ strat.check = function() {
       this.advice();
     }
   }else if (this.settings.rsi.high < resultRSI.outReal) {
-    if(this.settings.willr.down > resultWILLR && this.lastResultWILLR > resultWILLR.outReal){
+    console.log('high=' + this.settings.rsi.high + ' and rsi=' + resultRSI.outReal);
+    console.log('down=' + this.settings.willr.down + ' and rsi=' + resultWILLR.outReal);
+    if(this.settings.willr.down > resultWILLR.outReal && this.lastResultWILLR > resultWILLR.outReal){
 
       // new trend detected
       if(this.trend.direction !== 'down')
