@@ -8,7 +8,8 @@ strat.init = function() {
     direction: 'none',
     duration: 0,
     persisted: false,
-    adviced: false
+    adviced: false,
+    warning: false
   };
   params = {
     optInTimePeriod: this.settings.interval
@@ -18,6 +19,7 @@ strat.init = function() {
   this.requiredHistory = this.tradingAdvisor.historySize;
   this.addTalibIndicator('myWILLR', 'willr', params);
   this.addTalibIndicator('myRSI', 'rsi', params);
+  this.addTalibIndicator('myOBV', 'obv');
 }
 
 // What happens on every new candle?
@@ -37,17 +39,14 @@ strat.check = function() {
 
   var resultWILLR = this.talibIndicators['myWILLR'].result;
   var resultRSI = this.talibIndicators['myRSI'].result;
-  /*for (var prop in resultRSI) {
-    console.log("result." + prop + " = " + resultRSI[prop]);
-  }*/
-
-  //console.log('WILLR=' + resultWILLR.outReal + ', RSI=' + resultRSI.outReal);
 
   if (this.lastResultWILLR === undefined) {
     this.lastResultWILLR = resultWILLR.outReal;
     this.advice();
     return;
   }
+
+  
 
   if (this.settings.rsi.low > resultRSI.outReal) {
     console.log('rsi buy chance! rsi=' + resultRSI.outReal);
